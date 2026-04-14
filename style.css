@@ -1,0 +1,261 @@
+/* =============================================
+   style.css — Bethany Smith Scratch Page
+   From-scratch stylesheet (no Bootstrap)
+   ============================================= */
+
+/* === RESET & BASE === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  background-color: #1a1025;
+  color: #f0eaf8;
+  line-height: 1.75;
+}
+
+/* === TYPOGRAPHY === */
+h1, h2, h3 {
+  font-family: 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-weight: normal;
+  color: #f5e6ff;
+  letter-spacing: 0.04em;
+}
+
+p {
+  font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+  color: #c9bfdb;
+  font-size: 1rem;
+}
+
+a {
+  color: #d4a8f0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+/* === NAVIGATION === */
+#site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2.5rem;
+  background-color: #100c1c;
+  border-bottom: 1px solid #3a2d52;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+#site-nav .nav-title {
+  font-family: 'Didot', 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  color: #e8d5ff;
+  letter-spacing: 0.06em;
+}
+
+#site-nav .nav-links a {
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9a85b8;
+  margin-left: 1.8rem;
+}
+
+#site-nav .nav-links a:hover {
+  color: #f0eaf8;
+}
+
+/* === HERO DIV === */
+#hero {
+  text-align: center;
+  padding: 7rem 2rem 5rem;
+  background: radial-gradient(ellipse at 50% 0%, #3b1f5c 0%, #1a1025 65%);
+  position: relative;
+  overflow: hidden;
+}
+
+#hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(180,100,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#hero h1 {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  margin-bottom: 1rem;
+  color: #f5e6ff;
+}
+
+#hero .hero-sub {
+  font-size: 1.05rem;
+  color: #b09fcf;
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+}
+
+#hero .scroll-cta {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border: 1px solid #7a52aa;
+  color: #d4a8f0;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+
+#hero .scroll-cta:hover {
+  background: #7a52aa;
+  color: #fff;
+}
+
+/* === CONTENT SECTIONS DIV === */
+#content-sections {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.music-section {
+  margin-bottom: 4.5rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid #2e2040;
+}
+
+.music-section:last-child {
+  border-bottom: none;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9a6ecc;
+  margin-bottom: 0.7rem;
+}
+
+.music-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.music-section p {
+  margin-bottom: 1rem;
+}
+
+/* === IMAGE === */
+.music-img {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 1.5rem auto;
+  border: 1px solid #3a2d52;
+  border-radius: 2px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+}
+
+/* === LISTS === */
+.styled-list {
+  padding-left: 1.4rem;
+  color: #c9bfdb;
+  margin: 1rem 0;
+}
+
+.styled-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.styled-list li ul {
+  margin-top: 0.4rem;
+  padding-left: 1.2rem;
+  list-style-type: circle;
+}
+
+.styled-list li ul li {
+  color: #a892c5;
+  font-size: 0.9rem;
+}
+
+/* === VIDEO DIV === */
+#video-section {
+  background-color: #120e1e;
+  padding: 4rem 2rem;
+  text-align: center;
+  border-top: 1px solid #2e2040;
+  border-bottom: 1px solid #2e2040;
+}
+
+#video-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+#video-section p {
+  margin-bottom: 2rem;
+  color: #9a85b8;
+  font-size: 0.92rem;
+}
+
+.video-frame {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 720px;
+  margin: 0 auto;
+  border: 1px solid #3a2d52;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+.video-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* === TABLEAU SECTION === */
+#tableau-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+#tableau-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+#tableau-section p {
+  color: #9a85b8;
+  margin-bottom: 2rem;
+  font-size: 0.92rem;
+}
+
+/* === FOOTER === */
+#site-footer {
+  background-color: #f3e7cb;
+  border-top: 1px solid #2e2040;
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #5a4e70;
+}

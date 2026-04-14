@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bethany Smith</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #faf8f4;
+      --charcoal: #2c2c2c;
+      --muted: #7a7a7a;
+      --accent: #b5896a;
+      --light-line: #e8e2d9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
+    }
+
+    /* NAV */
+    nav {
+      background: var(--cream);
+      border-bottom: 1px solid var(--light-line);
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--charcoal); }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 5rem 2rem;
+    }
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--charcoal);
+      margin-bottom: 2rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid var(--charcoal);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-cta:hover {
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--light-line);
+      margin: 0;
+    }
+
+    /* ABOUT SECTION */
+    .about-section {
+      padding: 6rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .about-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+    .about-section p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 600px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* HIGHLIGHTS GRID */
+    .highlights {
+      padding: 5rem 2rem;
+      background: #f4f0ea;
+    }
+    .highlights-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .highlights h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      margin-bottom: 3rem;
+    }
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .highlight-card {
+      padding: 2rem;
+      background: var(--cream);
+      border: 1px solid var(--light-line);
+    }
+    .highlight-card .icon {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .highlight-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .highlight-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--light-line);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-brand">Bethany Smith</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Résumé</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">Pre-Business · BYU Provo</p>
+      <h1>Hello, I'm<br/><em>Bethany Smith</em></h1>
+      <p class="hero-desc">
+        A driven pre-business student with a passion for music, language, and leadership. 
+        I bring a strong work ethic and creative perspective to everything I do — from teaching 
+        piano to leading teams.
+      </p>
+      <a href="resume.html" class="hero-cta">View My Résumé</a>
+    </div>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <p class="section-label">About Me</p>
+    <h2>Student. Teacher. Musician.</h2>
+    <p>
+      I'm currently studying Pre-Business at Brigham Young University in Provo, Utah. 
+      My academic journey has taken me from Timpview High School to BYU–Hawaii and now 
+      to BYU Provo, shaped along the way by meaningful experiences in service, 
+      hospitality, and music education.
+    </p>
+    <p>
+      From 2024–2025 I served as a missionary for The Church of Jesus Christ of Latter-day Saints,
+      an experience that deepened my German language skills and instilled in me a greater capacity 
+      for empathy and leadership. Today I continue that spirit of service as a piano instructor 
+      at Slope School.
+    </p>
+    <p>
+      Outside the classroom I am a cellist, pianist, and singer — music is both my creative 
+      outlet and one of my greatest joys.
+    </p>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- HIGHLIGHTS -->
+  <section class="highlights">
+    <div class="highlights-inner">
+      <p class="section-label">At a Glance</p>
+      <h2>What I Bring</h2>
+      <div class="highlight-grid">
+        <div class="highlight-card">
+          <div class="icon">🎹</div>
+          <h3>Music</h3>
+          <p>Piano, cello, and voice — trained across genres with a love for performance and teaching.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="icon">🌍</div>
+          <h3>German</h3>
+          <p>Fluent communication skills developed through dedicated full-time service abroad.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="icon">🤝</div>
+          <h3>Leadership</h3>
+          <p>Experience leading teams and individuals in professional and service-oriented environments.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="icon">💼</div>
+          <h3>Work Ethic</h3>
+          <p>Proven track record across hospitality, education, and mission service roles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Bethany Smith · BYU Pre-Business</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

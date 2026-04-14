@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume — Bethany Smith</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #faf8f4;
+      --charcoal: #2c2c2c;
+      --muted: #7a7a7a;
+      --accent: #b5896a;
+      --light-line: #e8e2d9;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
+    }
+    nav {
+      background: var(--cream);
+      border-bottom: 1px solid var(--light-line);
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--charcoal); }
+
+    .resume-wrapper {
+      max-width: 820px;
+      margin: 4rem auto;
+      padding: 0 2rem 4rem;
+    }
+
+    /* HEADER */
+    .resume-header {
+      border-bottom: 2px solid var(--charcoal);
+      padding-bottom: 2rem;
+      margin-bottom: 3rem;
+    }
+    .resume-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.4rem;
+    }
+    .resume-header .tagline {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* SECTION */
+    .resume-section {
+      margin-bottom: 3rem;
+    }
+    .resume-section h2 {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--light-line);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    /* ENTRY */
+    .resume-entry {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.2rem 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .resume-entry h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0;
+      grid-column: 1;
+    }
+    .resume-entry .org {
+      font-size: 0.88rem;
+      color: var(--muted);
+      grid-column: 1;
+      margin-bottom: 0.4rem;
+    }
+    .resume-entry .date {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      grid-column: 2;
+      grid-row: 1 / 3;
+      text-align: right;
+      white-space: nowrap;
+      padding-top: 0.2rem;
+    }
+    .resume-entry p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      grid-column: 1 / 3;
+      margin: 0;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .skill-group h4 {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 0.6rem;
+    }
+    .skill-group ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .skill-group ul li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.25rem 0;
+      border-bottom: 1px solid var(--light-line);
+    }
+    .skill-group ul li:last-child { border-bottom: none; }
+
+    footer {
+      border-top: 1px solid var(--light-line);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-brand">Bethany Smith</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Résumé</a>
+    </div>
+  </nav>
+
+  <div class="resume-wrapper">
+
+    <!-- HEADER -->
+    <div class="resume-header">
+      <h1>Bethany Smith</h1>
+      <p class="tagline">Pre-Business Student · BYU Provo</p>
+    </div>
+
+    <!-- EDUCATION -->
+    <section class="resume-section" id="education">
+      <h2>Education</h2>
+
+      <div class="resume-entry">
+        <h3>Brigham Young University — Provo</h3>
+        <span class="date">2026–Present</span>
+        <p class="org">Pre-Business</p>
+        <p>Currently pursuing a degree in Business, developing skills in management, economics, and professional communication.</p>
+      </div>
+
+      <div class="resume-entry">
+        <h3>Brigham Young University — Hawaii</h3>
+        <span class="date">2024</span>
+        <p class="org">General Studies</p>
+        <p>Completed coursework at BYU–Hawaii prior to transferring to BYU Provo.</p>
+      </div>
+
+      <div class="resume-entry">
+        <h3>Timpview High School</h3>
+        <span class="date">Graduated May 2023</span>
+        <p class="org">Provo, Utah</p>
+        <p>Graduated with honors. Active in music programs including orchestra and choral ensembles.</p>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="resume-section" id="experience">
+      <h2>Work Experience</h2>
+
+      <div class="resume-entry">
+        <h3>Piano Instructor</h3>
+        <span class="date">2025–Present</span>
+        <p class="org">Slope School</p>
+        <p>Develop and deliver personalized piano lesson plans for students of varied ages and skill levels. Foster musical growth through structured technique-building and creative expression.</p>
+      </div>
+
+      <div class="resume-entry">
+        <h3>Full-Time Missionary</h3>
+        <span class="date">2024–2025</span>
+        <p class="org">The Church of Jesus Christ of Latter-day Saints</p>
+        <p>Served as a full-time representative, conducting community outreach, teaching, and service projects. Developed fluency in German and strengthened leadership, communication, and problem-solving skills in a demanding environment.</p>
+      </div>
+
+      <div class="resume-entry">
+        <h3>Front of House Staff</h3>
+        <span class="date">2022–2024</span>
+        <p class="org">Magleby's Fresh</p>
+        <p>Delivered high-quality guest experiences in a fast-paced restaurant environment. Managed customer relations, coordinated with kitchen and serving staff, and maintained a welcoming atmosphere for guests.</p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="resume-section" id="skills">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Professional</h4>
+          <ul>
+            <li>Problem Solving</li>
+            <li>Leadership</li>
+            <li>Effective Communication</li>
+            <li>Strong Work Ethic</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Languages</h4>
+          <ul>
+            <li>English (Native)</li>
+            <li>German (Fluent)</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h4>Music</h4>
+          <ul>
+            <li>Piano</li>
+            <li>Cello</li>
+            <li>Singing / Voice</li>
+            <li>Music Instruction</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /resume-wrapper -->
+
+  <footer>
+    <p>© 2025 Bethany Smith · BYU Pre-Business</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

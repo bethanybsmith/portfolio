@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music — Bethany Smith</title>
+  <!-- Custom stylesheet only — no Bootstrap -->
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVIGATION (links back to professional pages) -->
+  <nav id="site-nav">
+    <span class="nav-title">Bethany Smith</span>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Résumé</a>
+      <a href="app.html">Game</a>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <!-- On-page anchor target -->
+  <section id="top" id="hero">
+    <div id="hero">
+      <h1>Music &amp; Me</h1>
+      <p class="hero-sub">
+        A life lived in melody — piano keys, cello strings, and the human voice.
+      </p>
+      <a href="#my-story" class="scroll-cta">Read My Story ↓</a>
+    </div>
+  </section>
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <div id="content-sections">
+
+    <!-- SECTION 1 — MY STORY (on-page anchor) -->
+    <article id="my-story" class="music-section">
+      <p class="section-label">My Story</p>
+      <h2>How Music Found Me</h2>
+      <p>
+        Music has been a part of my life for as long as I can remember. My parents 
+        both studied music in college, and so I was naturally born into the atmosphere. 
+        I have played the piano for what feels like my entire life. I now work as a piano 
+        teacher and am grateful for the years that brought me to this point.  
+      </p>
+      <p>
+        My love for the cello started many years later when I was in 5th grade. My friend
+        and I were both interested in the idea of the cello and I ended up sticking with it. 
+        I played throughout high school and even had the chance to play many times on my mission
+        as well. 
+      </p>
+
+      <!-- IMAGE — freely available Unsplash image of piano/cello -->
+      <img
+        class="music-img"
+        src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=900&q=80"
+        alt="Hands on piano keys in warm light"
+      />
+
+      <p>
+        Singing is one of those things that just naturally happened in our family. We always saw 
+        ourselves as instrumentalists, but our Sundays were spend gathering as a family and singing
+        together in the living room. Since then, we have recorded a couple of albums and filmed a few 
+        music videos together. 
+      </p>
+    </article>
+
+    <!-- SECTION 2 — INSTRUMENTS -->
+    <article class="music-section">
+      <p class="section-label">The Instruments</p>
+      <h2>What I Play</h2>
+      <p>
+        Each instrument has taught me something different about musicality, patience, 
+        and self-expression. Below is a quick look at my journey with each one, 
+        including the styles and composers I love most.
+      </p>
+
+      <!-- ORDERED LIST with embedded UNORDERED LISTS -->
+      <ol class="styled-list">
+        <li>
+          <strong>Piano</strong>
+          <ul>
+            <li>Started lessons from my mom at a young age</li>
+            <li>Favorite cellist: Yo-Yo Ma</li>
+            <li>Currently teaching beginners at Slope School</li>
+            <li>Favorite genres: Classical, Country, Pop</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Cello</strong>
+          <ul>
+            <li>Began at age 12</li>
+            <li>Favorite pieces: Bach Cello Suite No. 1, Dvorák Concerto</li>
+            <li>Excited to hopefully play with the Symphony Orchestra at BYU in the Fall</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Voice / Singing</strong>
+          <ul>
+            <li>Choir experience with my family growing up</li>
+            <li>Enjoys both acapella and choral singing</li>
+            <li>Styles: Classical, Choral, Contemporary</li>
+          </ul>
+        </li>
+      </ol>
+    </article>
+
+    <!-- SECTION 3 — TEACHING -->
+    <article class="music-section">
+      <p class="section-label">Teaching</p>
+      <h2>Passing It On</h2>
+      <img
+        class="music-img"
+        src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=900&q=80"
+        alt="Piano lesson — hands on keyboard"
+      />
+      <p>
+        Since returning home from my mission, I've been a piano instructor at 
+        Slope School, working with students from beginners to intermediate players.
+        Teaching has deepened my own understanding of technique, theory, and patience.
+      </p>
+      <p>
+        I love seeing the progress my students make and sharing the joy of music with them. 
+        It's rewarding to help them discover their own musical voices and watch their confidence grow.
+      <!-- Anchor link back to top -->
+      <p><a href="#top">↑ Back to top</a></p>
+    </article>
+
+  </div><!-- /#content-sections -->
+
+  <!-- ===================== VIDEO ===================== -->
+  <section id="video-section">
+    <p class="section-label">Now Playing</p>
+    <h2>A Music Video From My Family</h2>
+    <p>This was recorded a few years back and is one of my favorites.</p>
+    <!-- Embedded YouTube video -->
+    <div class="video-frame">
+      <iframe
+        src="https://www.youtube.com/embed/JnGAuYPwVaM"
+        title="YouTube music video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ===================== TABLEAU ===================== -->
+  <section id="tableau-section">
+    <p class="section-label">Data &amp; Music</p>
+    <h2>The World's Most Popular Instruments</h2>
+    <p>An interactive Tableau visualization exploring instrument popularity worldwide.</p>
+    <!-- Tableau Public embedded viz -->
+    <div class='tableauPlaceholder' id='viz1776127139980' style='position: relative'><noscript><a href='#'><img alt='Sheet 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ba&#47;BarChart_15918224691420&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='BarChart_15918224691420&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ba&#47;BarChart_15918224691420&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1776127139980');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="site-footer">
+    <p>© 2025 Bethany Smith · <a href="index.html">Back to Professional Site</a></p>
+  </footer>
+
+</body>
+</html>

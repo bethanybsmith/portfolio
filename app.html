@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pong — Bethany Smith</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0d0d0d;
+      color: #f0f0f0;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #222;
+    }
+
+    header .brand {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      color: #888;
+    }
+
+    header a {
+      font-size: 0.8rem;
+      color: #888;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    header a:hover { color: #fff; }
+
+    .game-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 1rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .score-board {
+      display: flex;
+      gap: 5rem;
+      margin-bottom: 1.5rem;
+      align-items: center;
+    }
+
+    .score-block {
+      text-align: center;
+    }
+
+    .score-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 0.3rem;
+    }
+
+    .score-num {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .score-divider {
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    canvas {
+      border: 1px solid #333;
+      display: block;
+      background: #0d0d0d;
+      cursor: none;
+    }
+
+    .controls {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    button {
+      padding: 0.65rem 1.8rem;
+      border: 1px solid #444;
+      background: transparent;
+      color: #aaa;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    button:hover {
+      border-color: #fff;
+      color: #fff;
+    }
+
+    button.primary {
+      border-color: #7fff7f;
+      color: #7fff7f;
+    }
+
+    button.primary:hover {
+      background: #7fff7f;
+      color: #000;
+    }
+
+    .instructions {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #444;
+      line-height: 2;
+      letter-spacing: 0.06em;
+    }
+
+    .instructions span {
+      color: #666;
+    }
+
+    .win-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      display: none;
+    }
+
+    .win-overlay h2 {
+      font-size: 2.5rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.5rem;
+      color: #7fff7f;
+    }
+
+    .win-overlay p {
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="brand">Bethany Smith</span>
+    <a href="scratch.html">← Back</a>
+  </header>
+
+  <div class="game-area">
+    <h1>Pong</h1>
+
+    <div class="score-board">
+      <div class="score-block">
+        <div class="score-label">Player</div>
+        <div class="score-num" id="playerScore">0</div>
+      </div>
+      <div class="score-divider">—</div>
+      <div class="score-block">
+        <div class="score-label">Computer</div>
+        <div class="score-num" id="aiScore">0</div>
+      </div>
+    </div>
+
+    <canvas id="pong" width="700" height="450"></canvas>
+
+    <div class="controls">
+      <button class="primary" id="startBtn" onclick="startGame()">Start Game</button>
+      <button onclick="resetGame()">Reset</button>
+    </div>
+
+    <div class="instructions">
+      <span>W / S</span> or <span>↑ / ↓</span> to move your paddle &nbsp;|&nbsp;
+      First to <span>7</span> wins
+    </div>
+  </div>
+
+  <!-- Win overlay -->
+  <div class="win-overlay" id="winOverlay">
+    <h2 id="winText">You Win!</h2>
+    <p id="winSub">Great game.</p>
+    <button class="primary" onclick="resetGame()">Play Again</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('pong');
+    const ctx = canvas.getContext('2d');
+
+    const W = canvas.width;
+    const H = canvas.height;
+    const WINNING_SCORE = 7;
+    const PADDLE_W = 12;
+    const PADDLE_H = 80;
+    const BALL_R = 8;
+
+    let animId;
+    let running = false;
+
+    // Game objects
+    const player = { x: 20, y: H/2 - PADDLE_H/2, w: PADDLE_W, h: PADDLE_H, score: 0, dy: 0 };
+    const ai     = { x: W - 20 - PADDLE_W, y: H/2 - PADDLE_H/2, w: PADDLE_W, h: PADDLE_H, score: 0 };
+    const ball   = { x: W/2, y: H/2, r: BALL_R, dx: 4, dy: 3 };
+
+    // Key state
+    const keys = {};
+    document.addEventListener('keydown', e => keys[e.key] = true);
+    document.addEventListener('keyup',   e => keys[e.key] = false);
+
+    function resetBall(dir = 1) {
+      ball.x = W/2;
+      ball.y = H/2;
+      const angle = (Math.random() * 40 - 20) * Math.PI / 180;
+      const speed = 4.5;
+      ball.dx = Math.cos(angle) * speed * dir;
+      ball.dy = Math.sin(angle) * speed * (Math.random() > 0.5 ? 1 : -1);
+    }
+
+    function resetGame() {
+      player.score = 0;
+      ai.score = 0;
+      player.y = H/2 - PADDLE_H/2;
+      ai.y = H/2 - PADDLE_H/2;
+      document.getElementById('playerScore').textContent = '0';
+      document.getElementById('aiScore').textContent = '0';
+      document.getElementById('winOverlay').style.display = 'none';
+      document.getElementById('startBtn').textContent = 'Start Game';
+      running = false;
+      cancelAnimationFrame(animId);
+      resetBall();
+      draw();
+    }
+
+    function startGame() {
+      if (running) return;
+      running = true;
+      document.getElementById('startBtn').textContent = 'Running…';
+      resetBall();
+      loop();
+    }
+
+    function update() {
+      // Player movement
+      const speed = 6;
+      if ((keys['w'] || keys['W'] || keys['ArrowUp']) && player.y > 0)
+        player.y -= speed;
+      if ((keys['s'] || keys['S'] || keys['ArrowDown']) && player.y + player.h < H)
+        player.y += speed;
+
+      // AI movement (tracks ball with small lag)
+      const aiCenter = ai.y + ai.h / 2;
+      const aiSpeed = 4.2;
+      if (aiCenter < ball.y - 5) ai.y += aiSpeed;
+      else if (aiCenter > ball.y + 5) ai.y -= aiSpeed;
+      ai.y = Math.max(0, Math.min(H - ai.h, ai.y));
+
+      // Ball movement
+      ball.x += ball.dx;
+      ball.y += ball.dy;
+
+      // Top / bottom walls
+      if (ball.y - ball.r <= 0) { ball.y = ball.r; ball.dy *= -1; }
+      if (ball.y + ball.r >= H) { ball.y = H - ball.r; ball.dy *= -1; }
+
+      // Player paddle collision
+      if (
+        ball.x - ball.r <= player.x + player.w &&
+        ball.x + ball.r >= player.x &&
+        ball.y >= player.y && ball.y <= player.y + player.h
+      ) {
+        ball.x = player.x + player.w + ball.r;
+        const hitPos = (ball.y - (player.y + player.h/2)) / (player.h/2);
+        const angle = hitPos * 60 * Math.PI / 180;
+        const speed = Math.min(Math.sqrt(ball.dx*ball.dx + ball.dy*ball.dy) * 1.04, 12);
+        ball.dx = Math.cos(angle) * speed;
+        ball.dy = Math.sin(angle) * speed;
+      }
+
+      // AI paddle collision
+      if (
+        ball.x + ball.r >= ai.x &&
+        ball.x - ball.r <= ai.x + ai.w &&
+        ball.y >= ai.y && ball.y <= ai.y + ai.h
+      ) {
+        ball.x = ai.x - ball.r;
+        const hitPos = (ball.y - (ai.y + ai.h/2)) / (ai.h/2);
+        const angle = hitPos * 60 * Math.PI / 180;
+        const speed = Math.min(Math.sqrt(ball.dx*ball.dx + ball.dy*ball.dy) * 1.04, 12);
+        ball.dx = -Math.cos(angle) * speed;
+        ball.dy = Math.sin(angle) * speed;
+      }
+
+      // Scoring
+      if (ball.x - ball.r <= 0) {
+        ai.score++;
+        document.getElementById('aiScore').textContent = ai.score;
+        if (ai.score >= WINNING_SCORE) { endGame(false); return; }
+        resetBall(1);
+      }
+      if (ball.x + ball.r >= W) {
+        player.score++;
+        document.getElementById('playerScore').textContent = player.score;
+        if (player.score >= WINNING_SCORE) { endGame(true); return; }
+        resetBall(-1);
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Center dashed line
+      ctx.setLineDash([8, 10]);
+      ctx.strokeStyle = '#222';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(W/2, 0);
+      ctx.lineTo(W/2, H);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Paddles
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.roundRect(player.x, player.y, player.w, player.h, 4);
+      ctx.fill();
+
+      ctx.fillStyle = '#ff6b6b';
+      ctx.beginPath();
+      ctx.roundRect(ai.x, ai.y, ai.w, ai.h, 4);
+      ctx.fill();
+
+      // Ball
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function loop() {
+      update();
+      draw();
+      if (running) animId = requestAnimationFrame(loop);
+    }
+
+    function endGame(playerWon) {
+      running = false;
+      cancelAnimationFrame(animId);
+      const overlay = document.getElementById('winOverlay');
+      document.getElementById('winText').textContent = playerWon ? '🎉 You Win!' : 'Computer Wins';
+      document.getElementById('winSub').textContent = playerWon
+        ? `${player.score} — ${ai.score} · Nice playing!`
+        : `${ai.score} — ${player.score} · Better luck next time!`;
+      overlay.style.display = 'flex';
+    }
+
+    // Initial render
+    resetBall();
+    draw();
+  </script>
+</body>
+</html>
